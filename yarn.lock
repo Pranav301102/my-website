@@ -8266,6 +8266,11 @@ setprototypeof@1.2.0:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
+shadertoy-react@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/shadertoy-react/-/shadertoy-react-1.1.2.tgz#109d411df53792f4a38079ea1bf73ca9a27b7203"
+  integrity sha512-xlZA+GipOKR6B1SDHBrVLBK8zpfWFMOKddXvdU9B3yVhWlw4mX4Buex2ZxD3DJJeD8tw0kOU3jVeF2KgAeFUHA==
+
 shallow-copy@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/shallow-copy/-/shallow-copy-0.0.1.tgz#415f42702d73d810330292cc5ee86eae1a11a170"
