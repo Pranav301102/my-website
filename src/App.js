@@ -1,19 +1,24 @@
-import * as THREE from 'three'
-import ReactDOM from 'react-dom'
-import React, { Suspense, useState, useEffect, useRef, useMemo } from 'react'
-import { Canvas, useFrame ,extend,useThree} from '@react-three/fiber'
-import Effects from './Components/Effects'
-import { Text3D ,Center,shaderMaterial, Text} from '@react-three/drei'
+import * as THREE from "three";
+
+import React, { Suspense, useState, useEffect, useRef, useMemo } from "react";
+import { Canvas, useFrame, extend, useThree } from "@react-three/fiber";
+import Effects from "./Components/Effects";
+import { Text3D, Center, shaderMaterial, Text } from "@react-three/drei";
 // import Sparks from './Components/Sparks'
-import Sparks from './Components/Sparks'
+import Sparks from "./Components/Sparks";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import Particles from './Components/Particles'
-import './App.css'
-import glsl from 'babel-plugin-glsl/macro'
-import { GlitchPass } from './Components/Shaders/GlitchPass'
+import Particles from "./Components/Particles";
+import "./App.css";
+import glsl from "babel-plugin-glsl/macro";
+import { GlitchPass } from "./Components/Shaders/GlitchPass";
+import Model from "./Pages/HomePage/HomePage";
+import { Block } from "./Components/Blocks";
+import Header from './Components/Header/Header';
+import AboutME from "./Pages/AboutMe/AboutMe";
+import Projects from "./Pages/Project/Project";
 
 const ColorShiftMaterial = shaderMaterial(
-  { time: 0, uColor: new THREE.Color(0, 1, 0.9) ,uTime: 0},
+  { time: 0, uColor: new THREE.Color(0, 1, 0.9), uTime: 0 },
   // vertex shader
   glsl`
   precision mediump float;
@@ -73,18 +78,6 @@ const ColorShiftMaterial = shaderMaterial(
       return vec4(colormap_red(x)-1.0, colormap_green(x), colormap_blue(x), 1.0);
   }
   
-  // https://iquilezles.org/articles/warp
-  /*float noise( in vec2 x )
-  {
-      vec2 p = floor(x);
-      vec2 f = fract(x);
-      f = f*f*(3.0-2.0*f);
-      float a = textureLod(iChannel0,(p+vec2(0.5,0.5))/256.0,0.0).x;
-      float b = textureLod(iChannel0,(p+vec2(1.5,0.5))/256.0,0.0).x;
-      float c = textureLod(iChannel0,(p+vec2(0.5,1.5))/256.0,0.0).x;
-      float d = textureLod(iChannel0,(p+vec2(1.5,1.5))/256.0,0.0).x;
-      return mix(mix( a, b,f.x), mix( c, d,f.x),f.y);
-  }*/
   
   
   float rand(vec2 n) { 
@@ -130,73 +123,52 @@ const ColorShiftMaterial = shaderMaterial(
   }
   
   `
-)
+);
 
-extend({ ColorShiftMaterial })
-
-function HomeText(){
-  const ref1 = useRef();
-  const ref2 = useRef();
-  useFrame((state, delta) => (ref1.current.uTime += delta));
-  useFrame((state, delta) => (ref2.current.uTime += delta));
-  return(
-    <group>
-      <Center position={[-10,-1,0]}>
-      <Text3D position={[10,11,0]}font={'/Fonts/Roboto_Bold.json'} bevelEnabled bevelSize={0.05} size={10} >
-        I AM 
-        <colorShiftMaterial ref={ref1}  />
-      </Text3D>
-      <Text3D position={[10,0,0]}font={'/Fonts/Roboto_Bold.json'} bevelEnabled bevelSize={0.05} size={10}>
-        Pranav
-        <colorShiftMaterial ref={ref2}  />
-      </Text3D>
-      </Center>
-    </group>
-  )
-}
+extend({ ColorShiftMaterial });
 
 const CameraController = () => {
   const { camera, gl } = useThree();
-  useEffect(
-    () => {
-      const controls = new OrbitControls(camera, gl.domElement);
+  useEffect(() => {
+    const controls = new OrbitControls(camera, gl.domElement);
 
-      controls.minDistance = 3;
-      controls.maxDistance = 20;
-      return () => {
-        controls.dispose();
-      };
-    },
-    [camera, gl]
-  );
+    controls.minDistance = 3;
+    controls.maxDistance = 20;
+    return () => {
+      controls.dispose();
+    };
+  }, [camera, gl]);
   return null;
 };
 
-
 export default function App() {
-  const mouse = useRef([0, 0])
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+  const mouse = useRef([0, 0]);
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   return (
-    <div className='Container'>
-    <Canvas
-      linear
-      dpr={[1, 2]}
-      camera={{ fov: 100, position: [0, 0, 30] }}
-      onCreated={({ gl }) => {
-        // gl.toneMapping = THREE.ReinhardToneMapping
-        gl.setClearColor(new THREE.Color('#020211'))
-      }}> 
-      <CameraController/>
-      <fog attach="fog" args={['white', 50, 190]} />
-      <pointLight distance={100} intensity={4} color="white" />
-      <Particles count={isMobile ? 5000 : 10000} mouse={mouse} />
-      <Sparks  count={20} mouse={mouse} colors={['#A2CCB6', '#FCEEB5', '#EE786E', '#e0feff', 'lightpink', 'lightblue']}/>
-      <HomeText/>
-      <Effects />
-    </Canvas>
+    <>
+    {/* //<div className="Main-Container"> */}
+    <Header/>
+    <div className="Container">
+    <Suspense fallback={null}>
+      <Canvas
+        linear
+        dpr={[1, 2]}
+        camera={{ fov: 100, position: [0, 0, 35] }}
+        onCreated={({ gl }) => {
+          // gl.toneMapping = THREE.ReinhardToneMapping
+          gl.setClearColor(new THREE.Color("#020211"));
+        }}
+      >
+        <Model isMobile={isMobile} />
+      </Canvas>
+      </Suspense>
     </div>
-  )
+    <AboutME/>
+    <div className="Project-Container">
+        {/* <Projects/> */}
+    </div>
+   {/* </div>   */}
+  </>
+  );
 }
-
-

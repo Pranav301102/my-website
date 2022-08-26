@@ -2,7 +2,7 @@
 
 
 
-@import url('https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap');
+
 
 .Container{
   height: 100%;
@@ -28,27 +28,27 @@ body,
   overflow: auto;
 }
 
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
-
-:root {
-  font-size: 20px;
-}
-
-::selection {
-  background: #2ddab8;
-  color: white;
-}
 
 body {
   margin: 0;
   padding: 0;
-  background: #8395ad;
+  background: #01010b;
   overflow: hidden;
   font-family: 'Sulphur Point', sans-serif;
   color: white;
   font-size: 0.9rem;
 }
+
+.Container{
+  height: 100vh;
+  width:100%;
+}
+
+.Project-Container{
+  display: block;
+  
+}
+
+
+
+

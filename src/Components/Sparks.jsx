@@ -9,7 +9,9 @@ const r = () => Math.max(0.2, Math.random())
 
 function Fatline({ curve, width, color, speed }) {
   const material = useRef()
-  useFrame(() => (material.current.uniforms.dashOffset.value -= speed))
+  useFrame(() => (
+    material.current.uniforms.dashOffset.value -= speed)
+    )
   return (
     <mesh>
       <meshLine attach="geometry" vertices={curve} />
@@ -18,7 +20,7 @@ function Fatline({ curve, width, color, speed }) {
   )
 }
 
-export default function Sparks({ mouse, count, colors, radius = 10 }) {
+export default function Sparks({ mouse, count, colors, radius = 20 }) {
   const lines = useMemo(
     () =>
       new Array(count).fill().map((_, index) => {
@@ -48,9 +50,10 @@ export default function Sparks({ mouse, count, colors, radius = 10 }) {
     }
   })
 
+
   return (
     <group ref={ref}>
-      <group position={[-radius * 2, -radius, -10]} scale={[1, 1.3, 1]}>
+      <group position={[-radius *3, -radius + 20, -10]} scale={[1, 1.3, 1]}>
         {lines.map((props, index) => (
           <Fatline key={index} {...props} />
         ))}
