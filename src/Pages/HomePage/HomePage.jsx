@@ -1,45 +1,65 @@
+import * as THREE from 'three'
 import Particles from "../../Components/Particles"
-import Sparks from "../../Components/Sparks"
-import { Text3D ,Center} from '@react-three/drei'
-import Effects from "../../Components/Effects"
-import {  useFrame ,extend,useThree} from '@react-three/fiber'
-import React, { Suspense, useState, useEffect, useRef, useMemo } from 'react'
+import { useRef, } from 'react';
+import { useFrame ,extend} from '@react-three/fiber';
+import { useScroll , Text3D ,Center,shaderMaterial} from "@react-three/drei/web";
+import glsl from 'babel-plugin-glsl/macro'
+import Htext from '../../Components/HomeText';
+import Effects from '../../Components/Effects';
 
-function HomeText(){
-    const ref1 = useRef();
-    const ref2 = useRef();
-    useFrame((state, delta) => (ref1.current.uTime += delta));
-    useFrame((state, delta) => (ref2.current.uTime += delta));
-    return(
-      <group>
-        <Center position={[-10,10,0]}>
-        <Text3D position={[22,16,0]}font={'/Fonts/Roboto_Bold.json'} bevelEnabled bevelSize={0.05} size={10} >
-          I AM 
-          <colorShiftMaterial ref={ref1}  />
-        </Text3D>
-        <Text3D position={[10,5,0]}font={'/Fonts/Roboto_Bold.json'} bevelEnabled bevelSize={0.05} size={10}>
-          PRANAV
-          <colorShiftMaterial ref={ref2}  />
-        </Text3D>
-        </Center>
-      </group>
-    )
-  }
+const RenderConditionally = props => useFrame(({ gl, scene, camera }) =>
+  props.isScrolling && gl.render(scene, camera), 1)
 
-export default function Model(props){
-    const mouse = useRef([0, 0])
-    useFrame(() => {
-    }
-    );
+
+
+const ColorShiftMaterial = shaderMaterial(
+    { time: 0, color: new THREE.Color(0.2, 0.0, 0.1) },
+    // vertex shader
+    glsl`
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    // fragment shader
+    glsl`
+      uniform float time;
+      uniform vec3 color;
+      varying vec2 vUv;
+      void main() {
+        gl_FragColor.rgba = vec4(0.5 + 0.3 * sin(vUv.yxx + time) + color, 1.0);
+      }
+    `
+  )
+  
+extend({ ColorShiftMaterial })
+
+
+export  default function HomeScene(props){
+    const mouse = useRef([0,0])
+    const data = useScroll()
+    const meshRef = useRef()
+    const condition = useRef()
+    
+    useFrame((gl, scene, camera) => {
+        if(data.offset>0.3){
+           
+        }
+    });
+
     return(
-    <><group position={[0,10,0]}>
-      <fog attach="fog" args={['white', 50, 190]} />
-      <pointLight distance={100} intensity={4} color="white" />
-      <Particles count={props.isMobile ? 5000 : 10000} mouse={mouse} />
-      <Sparks  count={20} mouse={mouse} colors={['#A2CCB6', '#FCEEB5', '#EE786E', '#e0feff', 'lightpink', 'lightblue']}/>
-      <HomeText/>
-      <Effects />
-      </group>
-    </>
+        <>
+        <scene >
+        <mesh >
+        <RenderConditionally isScrolling={true}/>
+        {/* <Htext/> */}
+        <pointLight position={[0,0,30]} distance={10} intensity={20} color="white" />
+        <Particles  count={(props.isMobile ? 5000 : 10000)} mouse={mouse}  />
+        </mesh>
+        </scene>
+        </>
     )
 }
+
+// ))

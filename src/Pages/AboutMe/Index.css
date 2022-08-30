@@ -1,4 +1,5 @@
 .About-Container{
+    width: 90vw;
     max-height: 200vh;
     align-items: center;
     padding-left: 50px;
@@ -11,7 +12,7 @@
     padding: 30px;
     background: #F9F5EB;
     height: 73vh;
-    width: 50vw;
+    width: 30vw;
     min-width: 200px;
     display: inline-block;
     vertical-align:top;
@@ -21,7 +22,7 @@
   .My-Skills{
     margin: 100px -100px 50px 50px ;
     padding: 30px;
-    background: white;
+    background: #F9F5EB;
     width: 25vw;
     min-width: 200px;
     display: inline-block;

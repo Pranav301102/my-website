@@ -1,4 +1,4 @@
-import './AboutME.css'
+import './Index.css'
 
 export default function AboutME(){
   return(
@@ -78,4 +78,3 @@ function Skills(){
   )
 
 }
-

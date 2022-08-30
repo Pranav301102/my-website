@@ -1,14 +1,18 @@
 import * as THREE from 'three'
-import React, { useRef, useMemo } from 'react'
+import React, { useRef, useMemo ,useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
+import { useScroll } from '@react-three/drei/web';
 
-export default function Particles({ count ,mouse }) {
+export default function Particles({ count ,mouse ,particlesRatio}) {
   const mesh = useRef()
   const light = useRef()
+  const phongRef = useRef()
   const { size, viewport } = useThree()
   const aspect = size.width / viewport.width
-
   const dummy = useMemo(() => new THREE.Object3D(), [])
+  const scroll = useScroll()
+  
+
   // Generate some random positions, speed factors and timings
   const particles = useMemo(() => {
     const temp = []
@@ -17,7 +21,7 @@ export default function Particles({ count ,mouse }) {
       const factor = 20 + Math.random() * 100
       const speed = 0.01 + Math.random() / 200
       const xFactor = -50 + Math.random() * 100
-      const yFactor = -50 + Math.random() * 100
+      const yFactor = -10 + Math.random() * 20
       const zFactor = -50 + Math.random() * 100
       temp.push({ t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0 })
     }
@@ -26,7 +30,7 @@ export default function Particles({ count ,mouse }) {
   // The innards of this hook will run every frame
   useFrame((state) => {
     // Makes the light follow the mouse
-    light.current.position.set(mouse.current[0] / aspect, -mouse.current[1] / aspect, 0)
+    light.current.position.set(0, 20, 0)
     // Run through the randomized data to calculate some movement
     particles.forEach((particle, i) => {
       let { t, factor, speed, xFactor, yFactor, zFactor } = particle
@@ -49,14 +53,16 @@ export default function Particles({ count ,mouse }) {
       // And apply the matrix to the instanced item
       mesh.current.setMatrixAt(i, dummy.matrix)
     })
+    phongRef.current.opacity = 1 - scroll.range(0, 1 / 3)
     mesh.current.instanceMatrix.needsUpdate = true
   })
+  
   return (
     <>
-      <pointLight ref={light} distance={40} intensity={8} color="lightblue" />
-      <instancedMesh ref={mesh} args={[null, null, count]}>
+      <pointLight ref={light} distance={50} intensity={50} color="lightblue" />
+      <instancedMesh ref={mesh} args={[null, null, count]} >
         <dodecahedronGeometry args={[0.2, 0]} />
-        <meshPhongMaterial color="#050505" />
+        <meshPhongMaterial ref={phongRef} color="#050505" transparent/>
       </instancedMesh>
     </>
   )
