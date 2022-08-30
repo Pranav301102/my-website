@@ -2,10 +2,11 @@ import * as THREE from 'three'
 import Particles from "../../Components/Particles"
 import { useRef, } from 'react';
 import { useFrame ,extend} from '@react-three/fiber';
+import Blob from '../../Components/blob';
 import { useScroll , Text3D ,Center,shaderMaterial} from "@react-three/drei/web";
 import glsl from 'babel-plugin-glsl/macro'
-import Htext from '../../Components/HomeText';
-import Effects from '../../Components/Effects';
+import SphereTxt from '../../Components/SphereText';
+
 
 const RenderConditionally = props => useFrame(({ gl, scene, camera }) =>
   props.isScrolling && gl.render(scene, camera), 1)
@@ -54,8 +55,9 @@ export  default function HomeScene(props){
         <mesh >
         <RenderConditionally isScrolling={true}/>
         {/* <Htext/> */}
-        <pointLight position={[0,0,30]} distance={10} intensity={20} color="white" />
-        <Particles  count={(props.isMobile ? 5000 : 10000)} mouse={mouse}  />
+        <Blob />
+        <SphereTxt/>
+        <Particles  count={(props.isMobile ? 5000 : 5000)} mouse={mouse}  />
         </mesh>
         </scene>
         </>

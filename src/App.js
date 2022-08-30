@@ -11,12 +11,13 @@ function App() {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   return (
     <>
-      <Canvas linear gl={{ antialias: true }} dpr={[1, 2]} 
+      <Canvas linear gl={{ antialias: true }} dpr={[1,2]} 
       onCreated={({ gl }) => {
-          gl.toneMapping = THREE.ReinhardToneMapping
+          // gl.toneMapping = THREE.ReinhardToneMapping
         }}
       >
-      
+        <color attach="background" args={["#050505"]} />
+        <fog color="#161616" attach="fog" near={10} far={30} />
         <Suspense fallback={null}>
           <ScrollControls damping={4} pages={5}>
             <Scroll>
@@ -30,7 +31,7 @@ function App() {
                 be
               </h1>
               <h1
-                style={{ position: "absolute", top: "300vh", left: "0.5vw",fontSize: "30vw",}}>
+                style={{ position: "absolute", top: "10vh", left: "0.5vw",fontSize: "15vw",}}>
                 Pranav 
               </h1>
             </Scroll>
