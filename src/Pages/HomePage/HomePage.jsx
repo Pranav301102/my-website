@@ -6,6 +6,16 @@ import Blob from '../../Components/blob';
 import { useScroll , Text3D ,Center,shaderMaterial} from "@react-three/drei/web";
 import glsl from 'babel-plugin-glsl/macro'
 import SphereTxt from '../../Components/SphereText';
+import {
+  EffectComposer,
+  DepthOfField,
+  Bloom,
+  Noise,
+  Vignette,
+  Selection,
+  Select,
+  SelectiveBloom
+} from "@react-three/postprocessing";
 
 
 const RenderConditionally = props => useFrame(({ gl, scene, camera }) =>
@@ -51,15 +61,14 @@ export  default function HomeScene(props){
 
     return(
         <>
-        <scene >
-        <mesh >
-        <RenderConditionally isScrolling={true}/>
+        <mesh>
+        {/* <RenderConditionally isScrolling={true}/> */}
         {/* <Htext/> */}
-        <Blob />
+        <Blob ref={meshRef}/>
+        
         <SphereTxt/>
-        <Particles  count={(props.isMobile ? 5000 : 5000)} mouse={mouse}  />
+        <Particles  count={(props.isMobile ? 1000 : 3000)} mouse={mouse}  />
         </mesh>
-        </scene>
         </>
     )
 }

@@ -1,11 +1,33 @@
 import logo from "./logo.svg";
 import * as THREE from 'three' 
 import "./App.css";
-import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
+import { Canvas ,useThree, useFrame} from "@react-three/fiber";
+import { Suspense ,useRef} from "react";
 import { ScrollControls, Scroll } from "@react-three/drei";
 import HomeScene from "./Pages/HomePage/HomePage";
 import AboutME from './Pages/AboutMe/Index';
+import { useScroll } from '@react-three/drei/web';
+import Projects from "./Pages/Projects/Project";
+
+function Background({ color }) {
+  const scroll = useScroll()
+  const tcolor = new THREE.Color()
+  useFrame(( gl ) => {
+    if(scroll.offset<0.15){
+      gl.scene.background.lerp(tcolor.set( "rgb(255, 255, 255,1)"), 0.1)
+    }
+    else if(scroll.offset>0.15 && scroll.offset<0.55){
+      gl.scene.background.lerp(tcolor.set( "rgb(0, 250, 255,0.98)"), 0.05)
+    }
+    else{
+      gl.scene.background.lerp(tcolor.set( "rgb(0, 0, 0,2)"), 0.1)
+    }
+    
+  });
+  return (
+    <color attach="background" args={[color]} />
+  )
+}
 
 function App() {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -13,27 +35,30 @@ function App() {
     <>
       <Canvas linear gl={{ antialias: true }} dpr={[1,2]} 
       onCreated={({ gl }) => {
-          // gl.toneMapping = THREE.ReinhardToneMapping
+          gl.toneMapping = THREE.ReinhardToneMapping
         }}
       >
-        <color attach="background" args={["#050505"]} />
-        <fog color="#161616" attach="fog" near={10} far={30} />
         <Suspense fallback={null}>
           <ScrollControls damping={4} pages={5}>
+          <Background color={"white"}/>
             <Scroll>
               <HomeScene Position={[0,0,0]} isMobile={isMobile}/>
             </Scroll>
             <Scroll html>
+            <h1
+                style={{ position: "absolute", top: "5vh", left: "7.5vw",fontSize: "10vw",width:"50vw"}}>
+                Hi ,I am Pranav
+              </h1>
               <div style={{ position: "absolute", top: "100vh", left: "0.5em" }}>
                 <AboutME/>
               </div>
-              <h1 style={{ position: "absolute", top: "220vh", left: "60vw" }}>
-                be
+              <h1 style={{ position: "absolute", top: "200vh", left: "7.5vw",fontSize: "10vw" }}>
+                MY PROJECTS
               </h1>
-              <h1
-                style={{ position: "absolute", top: "10vh", left: "0.5vw",fontSize: "15vw",}}>
-                Pranav 
-              </h1>
+             
+              <div style={{ position: "absolute", top: "250vh", left: "0.5em" }}>
+                <Projects/>
+              </div>
             </Scroll>
           </ScrollControls>
         </Suspense>

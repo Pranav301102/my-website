@@ -1,13 +1,7 @@
 import * as THREE from "three";
 import React, { Suspense, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  EffectComposer,
-  DepthOfField,
-  Bloom,
-  Noise,
-  Vignette
-} from "@react-three/postprocessing";
+
 import {
   Html,
   Icosahedron,
@@ -15,6 +9,17 @@ import {
   useCubeTexture,
   MeshDistortMaterial
 } from "@react-three/drei";
+
+import {
+  EffectComposer,
+  DepthOfField,
+  Bloom,
+  Noise,
+  Vignette,
+  Selection,
+  Select,
+  SelectiveBloom
+} from "@react-three/postprocessing";
 
 function MainSphere({ material }) {
   const main = useRef();
@@ -37,10 +42,7 @@ function MainSphere({ material }) {
       args={[1, 4]}
       ref={main}
       material={material}
-      position={[0, 0,0
-      
-      
-      ]}
+      position={[2.4, 0,0]}
     />
   );
 }
@@ -97,6 +99,7 @@ function Scene() {
 
   return (
     <>
+     
       <MeshDistortMaterial
         ref={set}
         envMap={envMap}
@@ -107,7 +110,7 @@ function Scene() {
         bumpScale={0.005}
         clearcoat={1}
         clearcoatRoughness={0.2}
-        radius={1}
+        radius={1.4}
         distort={0.4}
       />
       {material && <Instances material={material} />}
@@ -116,28 +119,38 @@ function Scene() {
 }
 
 export default function Blob() {
+  const meshRef = useRef()
+  const light = useRef()
+  console.log(meshRef)
   return (
-  <group>
-        
+    <mesh>
       <Suspense fallback={<Html center>Loading.</Html>}>
-        <Scene position={[0,0,0]}/>
-      </Suspense>
+      <Selection enabled>
       <EffectComposer multisampling={0} disableNormalPass={false}>
         {/* <DepthOfField
           focusDistance={0}
           focalLength={0.02}
           bokehScale={3}
           height={480}
-        />
-        <Bloom
-          luminanceThreshold={0}
-          luminanceSmoothing={0.3}
-          height={300}
-          opacity={5}
         /> */}
+        <Bloom
+          luminanceThreshold={0.8}
+          luminanceSmoothing={1.9}
+          intensity={2.0}
+          height={3}
+          opacity={2}
+        />
         <Noise opacity={0.025} />
-        <Vignette eskil={false} offset={0.1} darkness={1.1} />
-      </EffectComposer>
-    </group>
+        {/* <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
+        </EffectComposer>
+        <Select enabled>
+        <mesh ref={meshRef}>
+        <pointLight ref={light} position={[-49,0,-1]} intensity={300}/>
+        <Scene/>
+        </mesh>
+        </Select>
+        </Selection>
+      </Suspense>
+    </mesh>
   );
 }
