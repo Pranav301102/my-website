@@ -39,7 +39,7 @@ function App() {
         }}
       >
         <Suspense fallback={null}>
-          <ScrollControls damping={4} pages={5}>
+          <ScrollControls damping={4} pages={6}>
           <Background color={"white"}/>
             <Scroll>
               <HomeScene Position={[0,0,0]} isMobile={isMobile}/>
@@ -52,7 +52,7 @@ function App() {
               <div style={{ position: "absolute", top: "100vh", left: "0.5em" }}>
                 <AboutME/>
               </div>
-              <h1 style={{ position: "absolute", top: "200vh", left: "7.5vw",fontSize: "10vw" }}>
+              <h1 style={{ position: "absolute", top: "200vh", left: "240px",fontSize: "9vw" }}>
                 MY PROJECTS
               </h1>
               <div style={{ position: "absolute", top: "280vh", left: "0.5em" }}>

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const websites = [
     {
+      "postion":"left",
       "hexa": "#1D1148",
       "title": "test",
       "stack": ["react", "express", "node"],
@@ -11,6 +12,7 @@ const websites = [
       "image": "https://res.cloudinary.com/vinzcelavi/image/upload/w_320,dpr_2.0/v1613408078/codesandbox/swile_x8mcnc.png"
     },
     {
+      "postion":"right",
       "hexa": "#FFCD00",
       "title": "Typeform",
       "stack": ["react", "express", "node"],
@@ -18,6 +20,14 @@ const websites = [
       "image": "https://res.cloudinary.com/vinzcelavi/image/upload/w_320,dpr_2.0/v1613409201/codesandbox/typeform_vqqkob.png"
     },
     {
+      "postion":"left",
+      "hexa": "#FFCD00",
+      "title": "Typeform",
+      "stack": ["react", "express", "node"],
+      "description": "https://www.welcometothejungle.com/fr/",
+      "image": "https://res.cloudinary.com/vinzcelavi/image/upload/w_320,dpr_2.0/v1613409201/codesandbox/typeform_vqqkob.png"
+    },
+    { "postion":"right",
       "hexa": "#FFCD00",
       "title": "Typeform",
       "stack": ["react", "express", "node"],
@@ -25,13 +35,7 @@ const websites = [
       "image": "https://res.cloudinary.com/vinzcelavi/image/upload/w_320,dpr_2.0/v1613409201/codesandbox/typeform_vqqkob.png"
     },
     {
-      "hexa": "#FFCD00",
-      "title": "Typeform",
-      "stack": ["react", "express", "node"],
-      "description": "https://www.welcometothejungle.com/fr/",
-      "image": "https://res.cloudinary.com/vinzcelavi/image/upload/w_320,dpr_2.0/v1613409201/codesandbox/typeform_vqqkob.png"
-    },
-    {
+      "postion":"left",
       "hexa": "#FFCD00",
       "title": "Typeform",
       "stack": ["react", "express", "node"],
@@ -52,6 +56,7 @@ export default function Projects(){
               description={website.description}
               image={website.image}
               stack={website.stack}
+              position={website.postion}
             />
           ))}
           </Grid>
@@ -64,10 +69,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 100vh;
-  min-height: -webkit-fill-available; /* mobile viewport bug fix */
-  overflow-x: auto;
-  scroll-behavior: smooth;
+  /* min-height: 400vh; */
+  height:fit-content ;
 
 `
 const Grid = styled.div`

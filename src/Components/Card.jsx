@@ -119,11 +119,12 @@ const CardContainer = styled.div`
   display:flex;
   justify-content:center;
   width:100vw ;
+  padding:80px 200px;
 `
 
 
-const Card = ({ hexa, title, description, image,stack }) => (
-  <CardContainer>
+const Card = ({ hexa, title, description, image,stack,position}) => (
+  <CardContainer style={{justifyContent:`${position}`}}>
   <Style>
     <Screenshot image={image} />
     <Content>
