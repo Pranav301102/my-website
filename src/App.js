@@ -7,17 +7,17 @@ import { ScrollControls, Scroll } from "@react-three/drei";
 import HomeScene from "./Pages/HomePage/HomePage";
 import AboutME from './Pages/AboutMe/Index';
 import { useScroll } from '@react-three/drei/web';
-import Projects from "./Pages/Projects/Project";
+import Projects from "./Pages/Projects/Index";
 
 function Background({ color }) {
   const scroll = useScroll()
   const tcolor = new THREE.Color()
   useFrame(( gl ) => {
-    if(scroll.offset<0.15){
+    if(scroll.offset<0.10){
       gl.scene.background.lerp(tcolor.set( "rgb(255, 255, 255,1)"), 0.1)
     }
-    else if(scroll.offset>0.15 && scroll.offset<0.55){
-      gl.scene.background.lerp(tcolor.set( "rgb(0, 250, 255,0.98)"), 0.05)
+    else if(scroll.offset>0.10 && scroll.offset<0.85){
+      gl.scene.background.lerp(tcolor.set( "rgba(227,253,253,1)"), 0.05)
     }
     else{
       gl.scene.background.lerp(tcolor.set( "rgb(0, 0, 0,2)"), 0.1)
@@ -55,8 +55,7 @@ function App() {
               <h1 style={{ position: "absolute", top: "200vh", left: "7.5vw",fontSize: "10vw" }}>
                 MY PROJECTS
               </h1>
-             
-              <div style={{ position: "absolute", top: "250vh", left: "0.5em" }}>
+              <div style={{ position: "absolute", top: "280vh", left: "0.5em" }}>
                 <Projects/>
               </div>
             </Scroll>

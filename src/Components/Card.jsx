@@ -1,19 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-const cardWidth = 320;
+const cardWidth = 420;
 const borderRadius = 8;
 const transition = 'all 0.45s ease';
 
 const Screenshot = styled.figure`
   z-index: 200;
   position: relative;
-  margin: 0;
-  padding: 0;
+  margin-top:-1px;
+  margin-left:-6px ;
+  margin-right:0px ;
+  padding:0px ;
   width: ${cardWidth}px;
-  height: 200px;
+  height: 296px;
   background: url(${(props) => props.image}) 0 0 no-repeat;
   background-size: cover;
-  border-radius: ${borderRadius}px ${borderRadius}px 0 0;
+  border-radius: ${borderRadius}px 0 0 ${borderRadius}px;
   overflow: hidden;
   backface-visibility: hidden;
   transition: ${transition};
@@ -32,8 +34,10 @@ const Screenshot = styled.figure`
 
 const Content = styled.div`
   z-index: 200;
+  width: 60vw;
+  height:237px;
   position: relative;
-  padding: 20px 20px 30px;
+  padding: 28px 20px 30px;
 `;
 
 const Title = styled.span`
@@ -54,26 +58,29 @@ const Description = styled.span`
 
 const BottomBar = styled.span`
   position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+  left: 0px;
+  bottom: 0px;
+  width: 35vw;
   height: 10px;
   background: ${(props) => props.background && props.background};
-  border-radius: 0 0 ${borderRadius}px ${borderRadius}px;
+  border-radius: 0 0 ${borderRadius}px 0;
   transition: ${transition};
 `;
 
 const Style = styled.button`
   position: relative;
+  display:flex;
+  flex-direction:row;
   flex-shrink: 0;
-  width: ${cardWidth}px;
   text-align: left;
   background: #ffffff;
   border-radius: ${borderRadius}px;
   cursor: pointer;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12), 0 20px 20px -10px rgba(0, 0, 0, 0.125);
   transition: ${transition};
-
+  width: 900px;
+  margin-top: 10px ;
+  max-height: 300px ;
   &:hover {
     transform: scale(1.04);
 
@@ -84,6 +91,7 @@ const Style = styled.button`
     }
 
     ${Title} {
+      font-size:20px ;
       transform: translateY(-10px);
     }
 
@@ -107,15 +115,53 @@ const Style = styled.button`
   }
 `;
 
-const Card = ({ hexa, title, description, image }) => (
+const CardContainer = styled.div`
+  display:flex;
+  justify-content:center;
+  width:100vw ;
+`
+
+
+const Card = ({ hexa, title, description, image,stack }) => (
+  <CardContainer>
   <Style>
     <Screenshot image={image} />
     <Content>
       <Title>{title}</Title>
       <Description>{description}</Description>
       <BottomBar background={hexa} />
+      <StackIcons data={stack} />
     </Content>
   </Style>
+  </CardContainer>
 );
 
 export default Card;
+
+function StackIcons(props) {
+  const array = props.data;
+  console.log(array)
+  const icons = array.map((item) => {
+    return (
+      <Icon key={item} >
+        <span className={item}>
+          <span />
+        </span>
+      </Icon>
+    );
+  });
+  return <div>{icons} </div>;
+}
+
+const Icon = styled.div`
+  font-size: .9rem;
+  display: inline-flex;
+  background: #D8D8D8;
+  border-radius: 3px;
+  margin-right: 5px;
+  margin-bottom: 15px;
+  span {
+    border-radius: 5px;
+    padding: 3px 5px;
+  };
+`
