@@ -8,6 +8,9 @@ import HomeScene from "./Pages/HomePage/HomePage";
 import AboutME from './Pages/AboutMe/Index';
 import { useScroll } from '@react-three/drei/web';
 import Projects from "./Pages/Projects/Index";
+import Stars from "./Components/Stars";
+import  styled  from 'styled-components';
+import { Footer } from "./Pages/Footer/Index";
 
 function Background({ color }) {
   const scroll = useScroll()
@@ -16,8 +19,11 @@ function Background({ color }) {
     if(scroll.offset<0.10){
       gl.scene.background.lerp(tcolor.set( "rgb(255, 255, 255,1)"), 0.1)
     }
-    else if(scroll.offset>0.10 && scroll.offset<0.85){
+    else if(scroll.offset>0.10 && scroll.offset<0.25){
       gl.scene.background.lerp(tcolor.set( "rgba(227,253,253,1)"), 0.05)
+    }
+    else if(scroll.offset>0.25 && scroll.offset<0.85){
+      gl.scene.background.lerp(tcolor.set( "rgba(0,34,77,1)"), 0.05)
     }
     else{
       gl.scene.background.lerp(tcolor.set( "rgb(0, 0, 0,2)"), 0.1)
@@ -29,6 +35,16 @@ function Background({ color }) {
   )
 }
 
+const HtmlContainer = styled.div`
+  position:absolute;
+  top: 100vh;
+  width:100vw;
+  display:flex;
+  flex-direction:column ;
+  
+  
+`
+
 function App() {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   return (
@@ -39,25 +55,33 @@ function App() {
         }}
       >
         <Suspense fallback={null}>
-          <ScrollControls damping={4} pages={6}>
+          <ScrollControls damping={4} pages={7}>
           <Background color={"white"}/>
             <Scroll>
               <HomeScene Position={[0,0,0]} isMobile={isMobile}/>
+              <Stars position={[-20,-20,0]}/>
             </Scroll>
             <Scroll html>
             <h1
                 style={{ position: "absolute", top: "5vh", left: "7.5vw",fontSize: "10vw",width:"50vw"}}>
                 Hi ,I am Pranav
               </h1>
-              <div style={{ position: "absolute", top: "100vh", left: "0.5em" }}>
+              <HtmlContainer>
+              <AboutME/>
+              <h1 className="project-head">MY PROJECTS</h1>
+              <Projects/>
+              <Footer/>
+              {/* <div style={{ position: "absolute", top: "100vh", left: "0.5em" }}>
                 <AboutME/>
               </div>
-              <h1 style={{ position: "absolute", top: "200vh", left: "240px",fontSize: "9vw" }}>
+              <h1 className="project-head" style={{ position: "absolute", top: "200vh", left: "240px",fontSize: "9vw" }}>
                 MY PROJECTS
               </h1>
               <div style={{ position: "absolute", top: "280vh", left: "0.5em" }}>
                 <Projects/>
-              </div>
+              </div> */}
+              </HtmlContainer>
+
             </Scroll>
           </ScrollControls>
         </Suspense>

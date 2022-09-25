@@ -75,6 +75,7 @@ const Style = styled.button`
   text-align: left;
   background: #ffffff;
   border-radius: ${borderRadius}px;
+  border:none ;
   cursor: pointer;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12), 0 20px 20px -10px rgba(0, 0, 0, 0.125);
   transition: ${transition};

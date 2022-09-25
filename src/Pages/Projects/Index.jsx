@@ -71,13 +71,13 @@ const Container = styled.div`
   justify-content: center;
   /* min-height: 400vh; */
   height:fit-content ;
-
+  /* margin-top:-130px ; */
 `
 const Grid = styled.div`
   display: flex;
   flex-wrap: wrap;;
   padding-left: calc(10vw - 160px);
-  height: 200vh ;
+  height: fit-content ;
   
   /* Fake padding-right */
   &::after {

@@ -1,38 +1,58 @@
 .About-Container{
-    width: 100vw;
-    max-height: 200vh;
-    align-items: center;
-    
-    
+    max-width: 100%;
+    max-height: 300vh;
+    display: flex;
+    flex-direction:column;
+    justify-content: left;
     min-height: 120vh;
   }
+
+.container-two{
+  max-width: 100%;
+    max-height: 300vh;
+    display: flex;
+    flex-direction:row;
+    justify-content: left;
+    
+}
   
   .About-Me{
     margin: 100px 50px;
     padding: 30px;
     background: #F9F5EB;
     height: 81vh;
-    width: 55vw;
+    width: 90vw;
     min-width: 200px;
-    display: inline-block;
+    display: block;
     vertical-align:top;
     border-radius: 30px;
+  }
+
+  .Tech{
+    margin: 100px  -100px 50px 200px ;
+    padding: 30px;
+    background: #F9F5EB;
+    width: 35vw;
+    display: block;
+    vertical-align:top;
+    border-radius: 30px;
+    height: 60vh;
   }
   
   .My-Skills{
     margin: 100px -100px 50px 50px ;
     padding: 30px;
     background: #F9F5EB;
-    width: 25vw;
-    min-width: 200px;
-    display: inline-block;
+    width: 45vw;
+    display: block;
     vertical-align:top;
     border-radius: 30px;
+    height:60vh;
   }
   
   .circle-chart {
-    width: 150px;
-    height: 150px;
+    width: 7.5vw;
+    height: 7.5vw;
   }
   
   .circle-chart__circle {
@@ -139,7 +159,7 @@
   }
   
   .single-skill {
-    width: 25%;
+    width: 6.5vw;
     margin-bottom: 80px;
     margin:20px;
   }

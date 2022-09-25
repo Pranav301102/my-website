@@ -3,6 +3,14 @@ h1{
   color: #282c34;
 }
 
+.project-head{
+  background: linear-gradient(30deg, #c850c0, #ffcc70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  font-size: 12vw;
+}
+
 
 a {
   pointer-events: all;

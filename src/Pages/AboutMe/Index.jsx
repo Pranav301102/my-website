@@ -6,9 +6,14 @@ export default function AboutME(){
       <div className="About-Me">
         <h1>About Me</h1>
       </div>
+      <div className='container-two'>
       <div className="My-Skills">
         <h1>Skills</h1>
         <Skills/>
+      </div>
+      <div className="Tech">
+        <h1>Technologies I am familiar with:</h1>
+      </div>
       </div>
     </div>
   )
@@ -21,8 +26,6 @@ function Skills(){
                 <div class="row responsive">
                     <div class="col-md-12">
                         <div class="skills_section text-center">
-                
-
                             <div class="skills-area">
                                 <div class="single-skill">
                                     <div class="circlechart" data-percentage="92"><svg class="circle-chart" viewBox="0 0 33.83098862 33.83098862" xmlns="http://www.w3.org/2000/svg"><circle class="circle-chart__background" cx="16.9" cy="16.9" r="15.9"></circle><circle class="circle-chart__circle success-stroke" stroke-dasharray="92,100" cx="16.9" cy="16.9" r="15.9"></circle><g class="circle-chart__info">   <text class="circle-chart__percent" x="17.9" y="15.5">92%</text><text class="circle-chart__subline" x="16.91549431" y="22">
