@@ -5,6 +5,7 @@ import { FaGithub,FaLinkedin,FaFacebookF, FaInstagram, FaTwitter } from "react-i
 export function Footer() {
     return (
       <>
+        <div className='footer'>
         <div class="main">
           <div class="col1">
             <p class="heading">Contact Me</p>
@@ -19,19 +20,9 @@ export function Footer() {
               </li>
             </ul>
           </div>
-  
           <div class="col2">
             <p class="heading"></p>
             <ul>
-              <li>
-                
-              </li>
-              <li>
-               
-              </li>
-              <li>
-                
-              </li>
               <li>
                 
               </li>
@@ -43,17 +34,12 @@ export function Footer() {
               <li>
                 Pranavtrivedi02@gmail.com
               </li>
-              <li>
-               
-              </li>
             </ul>
           </div>
-  
         </div>
-  
         <div class="bottom">
           <p class="copyright">© 2020 IEEE Techithon. All rights reserved.</p>
-  
+        </div>
         </div>
       </>
     );

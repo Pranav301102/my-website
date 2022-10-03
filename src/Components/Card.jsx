@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-const cardWidth = 420;
+
 const borderRadius = 8;
 const transition = 'all 0.45s ease';
 
@@ -11,8 +11,8 @@ const Screenshot = styled.figure`
   margin-left:-6px ;
   margin-right:0px ;
   padding:0px ;
-  width: ${cardWidth}px;
-  height: 296px;
+  width: 20vw;
+  height: 33vh;
   background: url(${(props) => props.image}) 0 0 no-repeat;
   background-size: cover;
   border-radius: ${borderRadius}px 0 0 ${borderRadius}px;
@@ -33,10 +33,8 @@ const Screenshot = styled.figure`
 `;
 
 const Content = styled.div`
-  z-index: 200;
+  z-index: 2;
   width: 60vw;
-  height:237px;
-  position: relative;
   padding: 28px 20px 30px;
 `;
 
@@ -58,9 +56,9 @@ const Description = styled.span`
 
 const BottomBar = styled.span`
   position: absolute;
-  left: 0px;
+  right: 0px;
   bottom: 0px;
-  width: 35vw;
+  width: 46vw;
   height: 10px;
   background: ${(props) => props.background && props.background};
   border-radius: 0 0 ${borderRadius}px 0;
@@ -79,9 +77,8 @@ const Style = styled.button`
   cursor: pointer;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12), 0 20px 20px -10px rgba(0, 0, 0, 0.125);
   transition: ${transition};
-  width: 900px;
-  margin-top: 10px ;
-  max-height: 300px ;
+  width: 60vw;
+  height: 33vh;
   &:hover {
     transform: scale(1.04);
 
@@ -113,7 +110,12 @@ const Style = styled.button`
         background: rgba(0, 0, 0, 0.1);
       }
     }
+    @media screen and (max-width:1281px){
+      width: 80vw;
+      
+    }
   }
+
 `;
 
 const CardContainer = styled.div`
@@ -121,6 +123,13 @@ const CardContainer = styled.div`
   justify-content:center;
   width:100vw ;
   padding:80px 200px;
+
+  @media screen and (max-height:645px){
+    padding:2vh 10px;
+  }
+  @media screen and (max-height:755px){
+    padding:7vh 80px;
+  }
 `
 
 
@@ -142,7 +151,6 @@ export default Card;
 
 function StackIcons(props) {
   const array = props.data;
-  console.log(array)
   const icons = array.map((item) => {
     return (
       <Icon key={item} >

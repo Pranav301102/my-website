@@ -11,11 +11,13 @@ import Projects from "./Pages/Projects/Index";
 import Stars from "./Components/Stars";
 import  styled  from 'styled-components';
 import { Footer } from "./Pages/Footer/Index";
+import { useEffect } from "react";
 
 function Background({ color }) {
   const scroll = useScroll()
   const tcolor = new THREE.Color()
   useFrame(( gl ) => {
+    console.log(window.innerHeight)
     if(scroll.offset<0.10){
       gl.scene.background.lerp(tcolor.set( "rgb(255, 255, 255,1)"), 0.1)
     }
@@ -42,11 +44,11 @@ const HtmlContainer = styled.div`
   display:flex;
   flex-direction:column ;
   
-  
 `
 
 function App() {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+ 
   return (
     <>
       <Canvas linear gl={{ antialias: true }} dpr={[1,2]} 
@@ -55,7 +57,7 @@ function App() {
         }}
       >
         <Suspense fallback={null}>
-          <ScrollControls damping={4} pages={7}>
+          <ScrollControls damping={4} pages={6.5}>
           <Background color={"white"}/>
             <Scroll>
               <HomeScene Position={[0,0,0]} isMobile={isMobile}/>
@@ -80,8 +82,8 @@ function App() {
               <div style={{ position: "absolute", top: "280vh", left: "0.5em" }}>
                 <Projects/>
               </div> */}
-              </HtmlContainer>
 
+              </HtmlContainer>
             </Scroll>
           </ScrollControls>
         </Suspense>

@@ -17,6 +17,7 @@
     font-weight: 300;
     width: 100%;
     color:white;
+    
   }
   .col1 {
     flex: 2;
@@ -68,4 +69,12 @@
   .policy a {
     color: black;
     margin-left: 20px;
+  }
+
+
+  @media screen and (min-width:1281) {
+    .main {
+      margin-top: 30vh;
+    }
+    
   }
