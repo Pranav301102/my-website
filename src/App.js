@@ -12,12 +12,13 @@ import Stars from "./Components/Stars";
 import  styled  from 'styled-components';
 import { Footer } from "./Pages/Footer/Index";
 import { useEffect } from "react";
+import Fooback from "./Components/footerbackground";
 
 function Background({ color }) {
   const scroll = useScroll()
   const tcolor = new THREE.Color()
   useFrame(( gl ) => {
-    console.log(window.innerHeight)
+    
     if(scroll.offset<0.10){
       gl.scene.background.lerp(tcolor.set( "rgb(255, 255, 255,1)"), 0.1)
     }
@@ -57,11 +58,12 @@ function App() {
         }}
       >
         <Suspense fallback={null}>
-          <ScrollControls damping={4} pages={6.5}>
+          <ScrollControls damping={4} pages={4.8}>
           <Background color={"white"}/>
             <Scroll>
               <HomeScene Position={[0,0,0]} isMobile={isMobile}/>
-              <Stars position={[-20,-20,0]}/>
+              <Stars position={[-12.5,-12.5,0]}/>
+              <Fooback />
             </Scroll>
             <Scroll html>
             <h1

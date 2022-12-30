@@ -5,7 +5,7 @@ import * as random from 'maath/random/dist/maath-random.esm'
 
 export default function Stars(props) {
     const ref = useRef()
-    const [sphere] = useState(() => random.inSphere(new Float32Array(7000), { radius: 13 }))
+    const [sphere] = useState(() => random.inSphere(new Float32Array(7000), { radius: 11 }))
     useFrame((state, delta) => {
       ref.current.rotation.x -= delta / 10
       ref.current.rotation.y -= delta / 15

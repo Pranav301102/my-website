@@ -11,9 +11,6 @@ export default function AboutME(){
         <h1>Skills</h1>
         <Skills/>
       </div>
-      <div className="Tech">
-        <h1>Technologies I am familiar with:</h1>
-      </div>
       </div>
     </div>
   )

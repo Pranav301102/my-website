@@ -122,7 +122,7 @@ const CardContainer = styled.div`
   display:flex;
   justify-content:center;
   width:100vw ;
-  padding:80px 200px;
+  padding:40px 200px;
 
   @media screen and (max-height:645px){
     padding:2vh 10px;
@@ -134,7 +134,7 @@ const CardContainer = styled.div`
 
 
 const Card = ({ hexa, title, description, image,stack,position}) => (
-  <CardContainer style={{justifyContent:`${position}`}}>
+  <CardContainer style={{justifyContent:`center`}}>
   <Style>
     <Screenshot image={image} />
     <Content>

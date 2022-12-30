@@ -1,6 +1,17 @@
 import Card from "../../Components/Card"
 import './Index.scss'
 import styled from "styled-components";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+
+// import required modules
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper";
+
 
 const websites = [
     {
@@ -47,8 +58,18 @@ const websites = [
 export default function Projects(){
     return(
         <Container>
-        <Grid>
+        <Swiper
+        cssMode={true}
+        navigation={true}
+        pagination={{ clickable: true }}
+        mousewheel={true}
+        keyboard={true}
+        loop={true}
+        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        className="mySwiper"
+      >
         {websites.map((website, index) => (
+          <SwiperSlide>
             <Card
               key={website.description}
               hexa={website.hexa}
@@ -58,19 +79,21 @@ export default function Projects(){
               stack={website.stack}
               position={website.postion}
             />
+            </SwiperSlide>
           ))}
-          </Grid>
-        </Container>
+          </Swiper>
+          </Container>
+        
     );
 }
 
 const Container = styled.div`
-  width:100vw;
+  width:98vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding-bottom:400px ;
   /* min-height: 400vh; */
-  height:fit-content ;
+  
   /* margin-top:-130px ; */
 `
 const Grid = styled.div`
