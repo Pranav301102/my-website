@@ -13,6 +13,7 @@ import  styled  from 'styled-components';
 import { Footer } from "./Pages/Footer/Index";
 import { useEffect } from "react";
 import Fooback from "./Components/footerbackground";
+import MyProject from './Components/MyProjectText';
 
 function Background({ color }) {
   const scroll = useScroll()
@@ -62,7 +63,8 @@ function App() {
           <Background color={"white"}/>
             <Scroll>
               <HomeScene Position={[0,0,0]} isMobile={isMobile}/>
-              <Stars position={[-12.5,-12.5,0]}/>
+              <Stars position={[-15.5,-15.5,0]}/>
+              <MyProject position={[0,0,0]}/>
               <Fooback />
             </Scroll>
             <Scroll html>
