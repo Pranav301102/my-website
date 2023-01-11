@@ -11,15 +11,10 @@ const fontUrl = `https://fonts.googleapis.com/css?family=Sulphur+Point&display=s
 export default function MyProject(){
     return(
         <mesh>
-            <Text font={fontUrl} position={[-3,-23.1,2]} characters="abcdefghijklmnopqrstuvwxyz" color="white" fontSize={2}>
-            My 
+            <Text font={fontUrl} position={[-1,-21.8,2]} characters="abcdefghijklmnopqrstuvwxyz" color="white" fontSize={2}>
+            Projects 
             <colorShiftMaterial/>
-            </Text>
-            <Text font={fontUrl} position={[1,-25.9,2]} characters="abcdefghijklmnopqrstuvwxyz" color="white" fontSize={2}>
-            Projects
-            <colorShiftMaterial/>
-            </Text>
-            
+            </Text>    
         </mesh>
     )
 }
@@ -49,7 +44,7 @@ extend({
       
       void main() {
         
-        gl_FragColor = vec4(mix(color1, color2, vUv.y*0.8), 1.0);
+        gl_FragColor = vec4(mix(color1, color2, vUv.y*0.5), 1.0);
       }
 
     `,

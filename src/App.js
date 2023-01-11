@@ -14,6 +14,7 @@ import { Footer } from "./Pages/Footer/Index";
 import { useEffect } from "react";
 import Fooback from "./Components/footerbackground";
 import MyProject from './Components/MyProjectText';
+import Nav from "./Components/Nav/Nav";
 
 function Background({ color }) {
   const scroll = useScroll()
@@ -63,8 +64,8 @@ function App() {
           <Background color={"white"}/>
             <Scroll>
               <HomeScene Position={[0,0,0]} isMobile={isMobile}/>
-              <Stars position={[-15.5,-15.5,0]}/>
-              <MyProject position={[0,0,0]}/>
+              <Stars position={[-12.5,-12.5,0]}/>
+              <MyProject />
               <Fooback />
             </Scroll>
             <Scroll html>
@@ -74,9 +75,11 @@ function App() {
               </h1>
               <HtmlContainer>
               <AboutME/>
-              <h1 className="project-head">MY PROJECTS</h1>
+              
+              <div className="project-head"/>
               <Projects/>
               <Footer/>
+              
               {/* <div style={{ position: "absolute", top: "100vh", left: "0.5em" }}>
                 <AboutME/>
               </div>
