@@ -57,6 +57,7 @@ function Cloud({ count = 2, radius = 20 }) {
     const spherical = new THREE.Spherical();
     const phiSpan = Math.PI / (count + 1);
     const thetaSpan = (Math.PI * 2) / count;
+    const things = ['React', 'JavaScript', 'AWS', 'Tensorflow','Python','Express.js','Java','Three.js','MongoDB','MySQL','ROS','Spring'];
     for (let i = 1; i < count + 1; i++)
       // Taken from https://discourse.threejs.org/t/can-i-place-obects-on-a-sphere-surface-evenly/4773/6
       for (let j = 0; j < count; j++)
@@ -64,7 +65,7 @@ function Cloud({ count = 2, radius = 20 }) {
           new THREE.Vector3().setFromSpherical(
             spherical.set(radius, phiSpan * i, thetaSpan * j)
           ),
-          "Java",
+          things[Math.floor(Math.random()*things.length)]
         ]);
     return temp;
   }, [count, radius]);
@@ -84,18 +85,17 @@ export default function SphereTxt() {
     <scene>
      
     <PresentationControls
-      global={false} // Spin globally or by dragging the model
       cursor={true} // Whether to toggle cursor style on drag
       snap={true} // Snap-back to center (can also be a spring config)
       speed={1} // Speed factor
       // Zoom factor when half the polar-max is reached
       rotation={[0, 0, 0]} // Default rotation
       polar={[0, Math.PI / 2]} // Vertical limits
-      azimuth={[-Infinity, Infinity]} // Horizontal limits
+      azimuth={[-2,0 ]} // Horizontal limits
       config={{ mass: 1, tension: 170, friction: 26 }} // Spring config
     >
-      <group ref={cloudref} position={[2.2, 0, 0]}>
-        <Cloud count={8} radius={1.8} />
+      <group ref={cloudref} position={[4.5, -2.5,0]} >
+        <Cloud count={10} radius={4} />
       </group>
     </PresentationControls>
     </scene>

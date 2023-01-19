@@ -19,7 +19,7 @@
     "sass": "^1.55.0",
     "styled-components": "^5.3.5",
     "swiper": "^8.4.5",
-    "three": "^0.143.0",
+    "three": "0.139.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

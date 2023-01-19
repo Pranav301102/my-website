@@ -55,13 +55,16 @@ function App() {
   return (
     <>
       <Canvas linear gl={{ antialias: true }} dpr={[1,2]} 
-      onCreated={({ gl }) => {
-          gl.toneMapping = THREE.ReinhardToneMapping
-        }}
+      // onCreated={({ gl }) => {
+      //     gl.toneMapping = THREE.ReinhardToneMapping
+      //   }}
       >
         <Suspense fallback={null}>
           <ScrollControls damping={4} pages={4.8}>
           <Background color={"white"}/>
+          <spotLight position={[0, 30, 40]} />
+          <spotLight position={[-50, 30, 40]} />
+           {/* <fog attach="fog" args={['white', 2, 10]} />  */}
             <Scroll>
               <HomeScene Position={[0,0,0]} isMobile={isMobile}/>
               <Stars position={[-12.5,-12.5,0]}/>
